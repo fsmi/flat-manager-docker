@@ -1,0 +1,3 @@
+[submodule "flat-manager"]
+	path = flat-manager
+	url = https://github.com/flatpak/flat-manager.git
