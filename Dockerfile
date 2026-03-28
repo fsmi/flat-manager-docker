@@ -8,10 +8,12 @@ RUN cd /src && cargo build --release
 
 FROM docker.io/debian:trixie
 
-RUN apt-get update && apt-get install -y flatpak ostree libpq5 ca-certificates && \
+RUN apt-get update && apt-get install -y flatpak ostree libpq5 ca-certificates catatonit && \
     rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/gpg /usr/bin/gpg2
 
 COPY --from=builder /src/target/release/flat-manager /src/target/release/flat-manager-client /usr/local/bin/
+
+ENTRYPOINT ["catatonit", "--"]
 CMD ["flat-manager"]
